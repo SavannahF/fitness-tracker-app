@@ -5,12 +5,15 @@ const routes = require('./routes')
 const mongoose = require('mongoose')
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/test'
 
-mongoose.connect(MONGODB_URI, 
+mongoose.connect(
+    process.env.MONGODB_URI || 'mongodb://localhost/fitness-tracker',
     {
-        useNewUrlParser: true, 
-        useUnifiedTopology: true
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false
     }
-);
+  );
 
 
 app.use(express.static('public'))
